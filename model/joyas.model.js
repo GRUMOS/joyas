@@ -26,6 +26,13 @@ export const getJoyasLimitModel = async (order_by = "id_ASC", limit = 5, page = 
 
 
 export const getJoyasFilterModel = async (filter) => {
- 
+  const { query, values } = await filterQuery("inventario", filter);
+  
+  const sqlQuery = {
+    text: query,
+    values: values,
+  };
+  
+  const response = await pool.query(sqlQuery);
+  return response.rows;
 };
-

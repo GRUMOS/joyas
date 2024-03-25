@@ -17,4 +17,16 @@ export const getJoyasLimitController = async (req, res) => {
   }
 };
 
+export const getJoyasFilterController = async (req, res) => {
+  try {
+    const query = req.query;
+    const data = await getJoyasFilterModel(query);
+    res.status(200).json(data);
+  }
+  catch (error) {
+    return res
+      .status(500)
+      .json({ error: "Error Filter" });
+  }
+};
 
